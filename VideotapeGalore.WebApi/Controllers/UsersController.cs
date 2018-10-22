@@ -12,10 +12,12 @@ namespace VideotapeGalore.WebApi.Controllers
     public class UsersController : ControllerBase
     {
         private IFriendsService FriendsService { get; }
+        private IReviewsService ReviewsService { get; }
 
-        public UsersController(IFriendsService friendsService)
+        public UsersController(IFriendsService friendsService, IReviewsService reviewsService)
         {
             FriendsService = friendsService;
+            ReviewsService = reviewsService;
         }
 
         [HttpGet]
@@ -63,6 +65,75 @@ namespace VideotapeGalore.WebApi.Controllers
         public IActionResult Update([FromRoute] int id, [FromBody] Friend friend)
         {
             FriendsService.Update(friend);
+            return NoContent();
+        }
+
+        [HttpGet("{friendId}/reviews")]
+        public async Task<IActionResult> GetAllReviews([FromRoute] int friendId)
+        {
+            var reviews = await ReviewsService.GetAllForFriend(friendId);
+            return Ok(reviews.ToDtos());
+        }
+
+        [HttpGet("{friendId}/reviews/{tapeId}")]
+        public async Task<IActionResult> GetReviewOfTape([FromRoute] int friendId, [FromRoute] int tapeId)
+        {
+            var review = await ReviewsService.GetFriendReviewOfTape(friendId, tapeId);
+            return Ok(review.ToDto());
+        }
+
+        [HttpPost("{friendId}/reviews/{tapeId}")]
+        public IActionResult CreateReviewOfTape(
+            [FromRoute] int friendId,
+            [FromRoute] int tapeId,
+            [FromBody] ReviewInputModel inputModel
+        )
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var review = new Review
+            {
+                FriendId = friendId,
+                TapeId = tapeId,
+                Rating = inputModel.Rating
+            };
+            ReviewsService.Create(review);
+            return CreatedAtAction(
+                nameof(GetReviewOfTape),
+                new {friendId = review.FriendId, tapeId = review.TapeId},
+                review.ToDto());
+        }
+
+        [HttpPut("{friendId}/reviews/{tapeId}")]
+        public async Task<IActionResult> UpdateReviewForTape(
+            [FromRoute] int friendId,
+            [FromRoute] int tapeId,
+            [FromBody] ReviewInputModel inputModel
+        )
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var review = new Review
+            {
+                FriendId = friendId,
+                TapeId = tapeId,
+                Rating = inputModel.Rating
+            };
+            ReviewsService.Update(review);
+            return NoContent();
+        }
+
+        [HttpDelete("{friendId}/reviews/{tapeId}")]
+        public async Task<IActionResult> DeleteReviewForTape([FromRoute] int friendId, [FromRoute] int tapeId)
+        {
+            var review = await ReviewsService.GetSingle(new {friendId, tapeId});
+            ReviewsService.Delete(review);
             return NoContent();
         }
     }

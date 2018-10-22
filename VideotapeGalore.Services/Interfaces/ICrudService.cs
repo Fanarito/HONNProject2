@@ -8,7 +8,7 @@ namespace VideotapeGalore.Services.Interfaces
         void Create(T t);
         void Delete(T t);
         void Update(T t);
-        Task<T> GetSingle(int id);
+        Task<T> GetSingle(object id);
         Task<IEnumerable<T>> GetAll();
     }
 }

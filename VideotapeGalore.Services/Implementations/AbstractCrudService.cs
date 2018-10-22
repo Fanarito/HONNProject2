@@ -34,7 +34,7 @@ namespace VideotapeGalore.Services.Implementations
             Context.SaveChanges();
         }
 
-        public async Task<T> GetSingle(int id)
+        public async Task<T> GetSingle(object id)
         {
             return await Context.FindAsync<T>(id);
         }

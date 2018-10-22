@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Common.DtoConverters;
 using Microsoft.AspNetCore.Mvc;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Models.InputModels;
@@ -8,11 +9,11 @@ namespace VideotapeGalore.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FriendsController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private IFriendsService FriendsService { get; }
 
-        public FriendsController(IFriendsService friendsService)
+        public UsersController(IFriendsService friendsService)
         {
             FriendsService = friendsService;
         }
@@ -20,13 +21,15 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await FriendsService.GetAll());
+            var friends = await FriendsService.GetAll();
+            return Ok(friends.ToDtos());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSingle([FromRoute] int id)
         {
-            return Ok(await FriendsService.GetSingle(id));
+            var friend = await FriendsService.GetSingle(id);
+            return Ok(friend.ToDto());
         }
 
         [HttpPost]
@@ -46,7 +49,7 @@ namespace VideotapeGalore.WebApi.Controllers
                 Address = inputModel.Address,
             };
             FriendsService.Create(friend);
-            return CreatedAtAction(nameof(GetSingle), new {id = friend.Id}, friend);
+            return CreatedAtAction(nameof(GetSingle), new {id = friend.Id}, friend.ToDto());
         }
 
         [HttpDelete("{id}")]

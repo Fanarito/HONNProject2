@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\VideotapeGalore.Models\VideotapeGalore.Models.csproj" />
     <ProjectReference Include="..\VideotapeGalore.Repositories\VideotapeGalore.Repositories.csproj" />
     <ProjectReference Include="..\VideotapeGalore.Services\VideotapeGalore.Services.csproj" />

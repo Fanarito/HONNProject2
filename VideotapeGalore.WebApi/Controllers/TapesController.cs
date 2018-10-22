@@ -114,7 +114,7 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpDelete("{tapeId}/reviews/{friendId}")]
         public async Task<IActionResult> DeleteReviewForTape([FromRoute] int tapeId, [FromRoute] int friendId)
         {
-            var review = await ReviewsService.GetSingle(new {friendId, tapeId});
+            var review = await ReviewsService.GetSingle(friendId, tapeId);
             ReviewsService.Delete(review);
             return NoContent();
         }

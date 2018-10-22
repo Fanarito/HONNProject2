@@ -12,10 +12,12 @@ namespace VideotapeGalore.WebApi.Controllers
     public class TapesController : ControllerBase
     {
         private ITapesService TapesService { get; }
+        private IReviewsService ReviewsService { get; }
 
-        public TapesController(ITapesService tapesService)
+        public TapesController(ITapesService tapesService, IReviewsService reviewsService)
         {
             TapesService = tapesService;
+            ReviewsService = reviewsService;
         }
 
         [HttpGet]
@@ -65,6 +67,27 @@ namespace VideotapeGalore.WebApi.Controllers
         {
             TapesService.Update(tape);
             return NoContent();
+        }
+
+        [HttpGet("reviews")]
+        public async Task<IActionResult> GetAllReviews()
+        {
+            var reviews = await ReviewsService.GetAll();
+            return Ok(reviews.ToDtos());
+        }
+        
+        [HttpGet("{tapeId}/reviews")]
+        public async Task<IActionResult> GetAllReviewsForTape([FromRoute] int tapeId)
+        {
+            var reviews = await ReviewsService.GetAllForTape(tapeId);
+            return Ok(reviews.ToDtos());
+        }
+        
+        [HttpGet("{tapeId}/reviews/{friendId}")]
+        public async Task<IActionResult> GetAllReviewsForTape([FromRoute] int tapeId, [FromRoute] int friendId)
+        {
+            var review = await ReviewsService.GetFriendReviewOfTape(friendId, tapeId);
+            return Ok(review.ToDto());
         }
     }
 }

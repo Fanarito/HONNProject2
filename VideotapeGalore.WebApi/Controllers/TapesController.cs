@@ -75,19 +75,48 @@ namespace VideotapeGalore.WebApi.Controllers
             var reviews = await ReviewsService.GetAll();
             return Ok(reviews.ToDtos());
         }
-        
+
         [HttpGet("{tapeId}/reviews")]
         public async Task<IActionResult> GetAllReviewsForTape([FromRoute] int tapeId)
         {
             var reviews = await ReviewsService.GetAllForTape(tapeId);
             return Ok(reviews.ToDtos());
         }
-        
+
         [HttpGet("{tapeId}/reviews/{friendId}")]
         public async Task<IActionResult> GetAllReviewsForTape([FromRoute] int tapeId, [FromRoute] int friendId)
         {
             var review = await ReviewsService.GetFriendReviewOfTape(friendId, tapeId);
             return Ok(review.ToDto());
+        }
+
+        [HttpPut("{tapeId}/reviews/{friendId}")]
+        public async Task<IActionResult> UpdateReviewForTape(
+            [FromRoute] int tapeId,
+            [FromRoute] int friendId,
+            [FromBody] ReviewInputModel inputModel
+        )
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var review = new Review
+            {
+                FriendId = friendId,
+                TapeId = tapeId,
+                Rating = inputModel.Rating
+            };
+            ReviewsService.Update(review);
+            return NoContent();
+        }
+
+        [HttpDelete("{tapeId}/reviews/{friendId}")]
+        public async Task<IActionResult> DeleteReviewForTape([FromRoute] int tapeId, [FromRoute] int friendId)
+        {
+            var review = await ReviewsService.GetSingle(new {friendId, tapeId});
+            ReviewsService.Delete(review);
+            return NoContent();
         }
     }
 }

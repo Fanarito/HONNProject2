@@ -17,11 +17,9 @@ namespace VideotapeGalore.Models.Entities
         public TapeType Type { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Eidr { get; set; }
+        public string DirectorFirstName { get; set; }
+        public string DirectorLastName { get; set; }
 
-        // Foreign keys
-        public int DirectorId { get; set; }
-
-        public virtual Director Director { get; set; }
         public virtual IEnumerable<BorrowInfo> BorrowInfos { get; set; }
     }
 }

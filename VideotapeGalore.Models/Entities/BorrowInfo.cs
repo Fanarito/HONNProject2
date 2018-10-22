@@ -6,7 +6,7 @@ namespace VideotapeGalore.Models.Entities
     {
         public int Id { get; set; }
         public DateTime BorrowDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         // Foreign Keys
         public int FriendId { get; set; }

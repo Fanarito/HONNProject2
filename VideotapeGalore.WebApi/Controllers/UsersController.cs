@@ -64,6 +64,10 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Update([FromRoute] int id, [FromBody] Friend friend)
         {
+            if (friend.Id != id)
+            {
+                return BadRequest();
+            }
             FriendsService.Update(friend);
             return NoContent();
         }

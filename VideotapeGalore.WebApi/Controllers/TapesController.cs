@@ -65,6 +65,10 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Update([FromRoute] int id, [FromBody] Tape tape)
         {
+            if (tape.Id != id)
+            {
+                return BadRequest();
+            }
             TapesService.Update(tape);
             return NoContent();
         }

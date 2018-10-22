@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Common.DtoConverters;
 using Microsoft.AspNetCore.Mvc;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Models.InputModels;
@@ -20,13 +21,15 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            return Ok(await TapesService.GetAll());
+            var tapes = await TapesService.GetAll();
+            return Ok(tapes.ToDtos());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSingle([FromRoute] int id)
         {
-            return Ok(await TapesService.GetSingle(id));
+            var tape = await TapesService.GetSingle(id);
+            return Ok(tape.ToDto());
         }
 
         [HttpPost]
@@ -47,7 +50,7 @@ namespace VideotapeGalore.WebApi.Controllers
                 DirectorLastName = inputModel.DirectorLastName,
             };
             TapesService.Create(tape);
-            return CreatedAtAction(nameof(GetSingle), new {id = tape.Id}, tape);
+            return CreatedAtAction(nameof(GetSingle), new {id = tape.Id}, tape.ToDto());
         }
 
         [HttpDelete("{id}")]

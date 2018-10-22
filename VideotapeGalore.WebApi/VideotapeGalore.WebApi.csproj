@@ -10,6 +10,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
+      <Version>2.1.4</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VideotapeGalore.Models\VideotapeGalore.Models.csproj" />
+    <ProjectReference Include="..\VideotapeGalore.Repositories\VideotapeGalore.Repositories.csproj" />
+    <ProjectReference Include="..\VideotapeGalore.Services\VideotapeGalore.Services.csproj" />
   </ItemGroup>
 
 </Project>

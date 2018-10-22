@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VideotapeGalore.Models\VideotapeGalore.Models.csproj" />
+    <ProjectReference Include="..\VideotapeGalore.Repositories\VideotapeGalore.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -9,7 +9,7 @@ namespace VideotapeGalore.Services.Implementations
 {
     public abstract class AbstractCrudService<T> : ICrudService<T> where T : class
     {
-        private ApplicationContext Context { get; set; }
+        protected ApplicationContext Context { get; set; }
 
         protected AbstractCrudService(ApplicationContext context)
         {

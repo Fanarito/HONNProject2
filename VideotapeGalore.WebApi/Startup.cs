@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VideotapeGalore.Repositories;
+using VideotapeGalore.Services.Implementations;
+using VideotapeGalore.Services.Interfaces;
 
 namespace VideotapeGalore.WebApi
 {
@@ -33,6 +35,10 @@ namespace VideotapeGalore.WebApi
             var connectionString = Configuration.GetConnectionString("Application");
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlite(connectionString));
+            
+            // DI services
+            services.AddScoped<IFriendsService, FriendsService>();
+            services.AddScoped<ITapesService, TapesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

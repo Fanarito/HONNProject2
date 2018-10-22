@@ -21,5 +21,6 @@ namespace VideotapeGalore.Models.Entities
         public string DirectorLastName { get; set; }
 
         public virtual IEnumerable<BorrowInfo> BorrowInfos { get; set; }
+        public virtual IEnumerable<Review> Reviews { get; set; }
     }
 }

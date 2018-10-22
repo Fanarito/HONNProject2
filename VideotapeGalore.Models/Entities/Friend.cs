@@ -12,5 +12,6 @@ namespace VideotapeGalore.Models.Entities
         public string Address { get; set; }
 
         public virtual IEnumerable<BorrowInfo> BorrowInfos { get; set; }
+        public virtual IEnumerable<Review> Reviews { get; set; }
     }
 }

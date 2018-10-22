@@ -78,7 +78,7 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpGet("{friendId}/reviews/{tapeId}")]
         public async Task<IActionResult> GetReviewOfTape([FromRoute] int friendId, [FromRoute] int tapeId)
         {
-            var review = await ReviewsService.GetFriendReviewOfTape(friendId, tapeId);
+            var review = await ReviewsService.GetSingle(friendId, tapeId);
             return Ok(review.ToDto());
         }
 
@@ -132,7 +132,7 @@ namespace VideotapeGalore.WebApi.Controllers
         [HttpDelete("{friendId}/reviews/{tapeId}")]
         public async Task<IActionResult> DeleteReviewForTape([FromRoute] int friendId, [FromRoute] int tapeId)
         {
-            var review = await ReviewsService.GetSingle(new {friendId, tapeId});
+            var review = await ReviewsService.GetSingle(friendId, tapeId);
             ReviewsService.Delete(review);
             return NoContent();
         }

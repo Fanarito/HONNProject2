@@ -30,7 +30,7 @@ namespace VideotapeGalore.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TapeInputModel inputModel)
+        public IActionResult Create([FromBody] TapeInputModel inputModel)
         {
             if (!ModelState.IsValid)
             {

@@ -18,5 +18,6 @@ namespace VideotapeGalore.Models.InputModels
         public string Phone { get; set; }
         [Required]
         [MinLength(1)]
-        public string Address { get; set; }    }
+        public string Address { get; set; }
+    }
 }

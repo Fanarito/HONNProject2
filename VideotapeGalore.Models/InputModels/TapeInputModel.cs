@@ -21,5 +21,6 @@ namespace VideotapeGalore.Models.InputModels
         public string DirectorFirstName { get; set; }
         [Required]
         [MinLength(1)]
-        public string DirectorLastName { get; set; }    }
+        public string DirectorLastName { get; set; }
+    }
 }

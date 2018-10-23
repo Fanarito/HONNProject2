@@ -8,6 +8,7 @@ using Newtonsoft.Json.Converters;
 using VideotapeGalore.Repositories;
 using VideotapeGalore.Services.Implementations;
 using VideotapeGalore.Services.Interfaces;
+using VideotapeGalore.WebApi.ExceptionHandlerExtensions;
 
 namespace VideotapeGalore.WebApi
 {
@@ -53,6 +54,7 @@ namespace VideotapeGalore.WebApi
                 app.UseHsts();
             }
 
+            app.UseGlobalExceptionHandler();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

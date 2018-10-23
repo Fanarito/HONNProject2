@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VideotapeGalore.Repositories;
+using VideotapeGalore.Services.Exceptions;
 using VideotapeGalore.Services.Interfaces;
 
 namespace VideotapeGalore.Services.Implementations
@@ -36,7 +37,12 @@ namespace VideotapeGalore.Services.Implementations
 
         public async Task<T> GetSingle(params object[] id)
         {
-            return await Context.FindAsync<T>(id);
+            var res = await Context.FindAsync<T>(id);
+            if (res == null)
+            {
+                throw new NotFoundException($"{typeof(T).Name} not found");
+            }
+            return res;
         }
 
         public async Task<IEnumerable<T>> GetAll()

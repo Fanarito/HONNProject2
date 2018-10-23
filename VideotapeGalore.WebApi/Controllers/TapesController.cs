@@ -63,8 +63,16 @@ namespace VideotapeGalore.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] Tape tape)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] TapeInputModel inputModel)
         {
+            var tape = await TapesService.GetSingle(id);
+            tape.Title = inputModel.Title;
+            tape.Type = inputModel.Type;
+            tape.ReleaseDate = inputModel.ReleaseDate;
+            tape.Eidr = inputModel.Eidr;
+            tape.DirectorFirstName = inputModel.DirectorFirstName;
+            tape.DirectorLastName = inputModel.DirectorLastName;
+
             TapesService.Update(tape);
             return NoContent();
         }
@@ -97,16 +105,9 @@ namespace VideotapeGalore.WebApi.Controllers
             [FromBody] ReviewInputModel inputModel
         )
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            var review = new Review
-            {
-                FriendId = friendId,
-                TapeId = tapeId,
-                Rating = inputModel.Rating
-            };
+            var review = await ReviewsService.GetSingle(friendId, tapeId);
+            review.Rating = inputModel.Rating;
+
             ReviewsService.Update(review);
             return NoContent();
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Repositories;
+using VideotapeGalore.Services.Filters;
 using VideotapeGalore.Services.Interfaces;
 
 namespace VideotapeGalore.Services.Implementations
@@ -16,7 +18,7 @@ namespace VideotapeGalore.Services.Implementations
         {
         }
 
-        public async Task<IEnumerable<Tape>>TapesOnLoan(int friendId)
+        public async Task<IEnumerable<Tape>> TapesOnLoan(int friendId)
         {
             return await Context.Set<BorrowInfo>()
                 .Include(b => b.Tape)

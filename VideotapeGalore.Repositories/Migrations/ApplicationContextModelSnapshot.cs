@@ -21,7 +21,9 @@ namespace VideotapeGalore.Repositories.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BorrowDate");
+                    b.Property<DateTime>("BorrowDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("datetime('now')");
 
                     b.Property<int>("FriendId");
 

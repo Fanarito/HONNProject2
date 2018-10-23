@@ -9,7 +9,7 @@ using VideotapeGalore.Repositories;
 namespace VideotapeGalore.Repositories.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20181022113928_InitialCreate")]
+    [Migration("20181023164546_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,9 @@ namespace VideotapeGalore.Repositories.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BorrowDate");
+                    b.Property<DateTime>("BorrowDate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("datetime('now')");
 
                     b.Property<int>("FriendId");
 
@@ -60,6 +62,21 @@ namespace VideotapeGalore.Repositories.Migrations
                     b.ToTable("Friends");
                 });
 
+            modelBuilder.Entity("VideotapeGalore.Models.Entities.Review", b =>
+                {
+                    b.Property<int>("FriendId");
+
+                    b.Property<int>("TapeId");
+
+                    b.Property<int>("Rating");
+
+                    b.HasKey("FriendId", "TapeId");
+
+                    b.HasIndex("TapeId");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("VideotapeGalore.Models.Entities.Tape", b =>
                 {
                     b.Property<int>("Id")
@@ -91,6 +108,19 @@ namespace VideotapeGalore.Repositories.Migrations
 
                     b.HasOne("VideotapeGalore.Models.Entities.Tape", "Tape")
                         .WithMany("BorrowInfos")
+                        .HasForeignKey("TapeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("VideotapeGalore.Models.Entities.Review", b =>
+                {
+                    b.HasOne("VideotapeGalore.Models.Entities.Friend", "Friend")
+                        .WithMany("Reviews")
+                        .HasForeignKey("FriendId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("VideotapeGalore.Models.Entities.Tape", "Tape")
+                        .WithMany("Reviews")
                         .HasForeignKey("TapeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

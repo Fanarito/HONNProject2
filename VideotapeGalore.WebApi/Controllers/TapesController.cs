@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using Common.DtoConverters;
 using Microsoft.AspNetCore.Mvc;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Models.InputModels;
+using VideotapeGalore.Services.Filters;
 using VideotapeGalore.Services.Interfaces;
 
 namespace VideotapeGalore.WebApi.Controllers
@@ -13,17 +15,30 @@ namespace VideotapeGalore.WebApi.Controllers
     {
         private ITapesService TapesService { get; }
         private IReviewsService ReviewsService { get; }
+        private IBorrowInfosService BorrowInfosService { get; }
 
-        public TapesController(ITapesService tapesService, IReviewsService reviewsService)
+        public TapesController(
+            ITapesService tapesService,
+            IReviewsService reviewsService,
+            IBorrowInfosService borrowInfosService
+        )
         {
             TapesService = tapesService;
             ReviewsService = reviewsService;
+            BorrowInfosService = borrowInfosService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(
+            [FromQuery] DateTime? loanDate,
+            [FromQuery] int? loanDuration
+        )
         {
-            var tapes = await TapesService.GetAll();
+            var tapes = await BorrowInfosService.GetTapesMatchingBorrowFilter(new BorrowFilter
+            {
+                LoanDate = loanDate,
+                LoanDuration = loanDuration,
+            });
             return Ok(tapes.ToDtos());
         }
 

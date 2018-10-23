@@ -1,8 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using Common.DtoConverters;
 using Microsoft.AspNetCore.Mvc;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Models.InputModels;
+using VideotapeGalore.Services.Filters;
 using VideotapeGalore.Services.Implementations;
 using VideotapeGalore.Services.Interfaces;
 
@@ -15,21 +17,31 @@ namespace VideotapeGalore.WebApi.Controllers
         private IFriendsService FriendsService { get; }
         private IReviewsService ReviewsService { get; }
         private IRecommendationService RecommendationService { get; }
+        private IBorrowInfosService BorrowInfosService { get; }
 
         public UsersController(
             IFriendsService friendsService,
             IReviewsService reviewsService,
-            IRecommendationService recommendationService)
+            IRecommendationService recommendationService,
+            IBorrowInfosService borrowInfosService)
         {
             FriendsService = friendsService;
             ReviewsService = reviewsService;
             RecommendationService = recommendationService;
+            BorrowInfosService = borrowInfosService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(
+            [FromQuery] DateTime? loanDate,
+            [FromQuery] int? loanDuration
+        )
         {
-            var friends = await FriendsService.GetAll();
+            var friends = await BorrowInfosService.GetFriendsMatchingBorrowFilter(new BorrowFilter
+            {
+                LoanDate = loanDate,
+                LoanDuration = loanDuration,
+            });
             return Ok(friends.ToDtos());
         }
 

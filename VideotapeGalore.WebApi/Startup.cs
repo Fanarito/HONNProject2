@@ -41,6 +41,7 @@ namespace VideotapeGalore.WebApi
             services.AddScoped<ITapesService, TapesService>();
             services.AddScoped<IReviewsService, ReviewsService>();
             services.AddScoped<IRecommendationService, RecommendationService>();
+            services.AddScoped<IBorrowInfosService, BorrowInfosService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

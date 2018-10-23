@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Threading.Tasks;
 using VideotapeGalore.Models.Entities;
+using VideotapeGalore.Services.Filters;
 
 namespace VideotapeGalore.Services.Interfaces
 {

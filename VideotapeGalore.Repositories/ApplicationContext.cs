@@ -24,6 +24,8 @@ namespace VideotapeGalore.Repositories
             modelBuilder.Entity<Review>().HasKey(r => new {r.FriendId, r.TapeId});
             modelBuilder.Entity<Review>().HasOne(r => r.Tape).WithMany(t => t.Reviews);
             modelBuilder.Entity<Review>().HasOne(r => r.Friend).WithMany(u => u.Reviews);
+
+            modelBuilder.Entity<BorrowInfo>().Property(b => b.BorrowDate).HasDefaultValueSql("datetime('now')");
         }
     }
 }

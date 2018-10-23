@@ -46,6 +46,7 @@ namespace VideotapeGalore.Services.Implementations
                 .SingleAsync();
             burrowInfo.ReturnDate = DateTime.Now;
             Context.Update(burrowInfo);
+            Context.SaveChanges();
         }
     }
 }

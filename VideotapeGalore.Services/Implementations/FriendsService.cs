@@ -24,10 +24,9 @@ namespace VideotapeGalore.Services.Implementations
                 .Select(b => b.Tape).ToListAsync();
         }
 
-        public void RegisterTape(int friendId, int tapeId)
+        public async Task RegisterTape(int friendId, int tapeId)
         {
-            if (Context
-                .Set<BorrowInfo>().Any(b => b.TapeId == tapeId && b.ReturnDate == null))
+            if (await Context.Set<BorrowInfo>().AnyAsync(b => b.TapeId == tapeId && b.ReturnDate == null))
             {
                 throw new Exception();
             }

@@ -3,6 +3,7 @@ using Common.DtoConverters;
 using Microsoft.AspNetCore.Mvc;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Models.InputModels;
+using VideotapeGalore.Services.Implementations;
 using VideotapeGalore.Services.Interfaces;
 
 namespace VideotapeGalore.WebApi.Controllers
@@ -18,8 +19,7 @@ namespace VideotapeGalore.WebApi.Controllers
         public UsersController(
             IFriendsService friendsService,
             IReviewsService reviewsService,
-            IRecommendationService recommendationService
-        )
+            IRecommendationService recommendationService)
         {
             FriendsService = friendsService;
             ReviewsService = reviewsService;
@@ -148,5 +148,28 @@ namespace VideotapeGalore.WebApi.Controllers
             var recommendations = await RecommendationService.GetRecommendations(friendId);
             return Ok(recommendations.ToDtos());
         }
+
+        [HttpGet("{friendId}/tapes")]
+        public async Task<IActionResult> GetTapesOnLoanForUser([FromRoute] int friendId)
+        {
+            // Make sure friend exists
+            await FriendsService.GetSingle(friendId);
+            var tapes = await FriendsService.TapesOnLoan(friendId);
+            return Ok(tapes.ToDtos());
+        }
+        
+        [HttpPatch("{friendId}/tapes/{tapeId}")]
+        public async Task<IActionResult> RegisterTapeOnLoan([FromRoute] int friendId, [FromRoute] int tapeId)
+        {
+            await FriendsService.RegisterTape(friendId, tapeId);
+            return NoContent();
+        }
+        
+        [HttpDelete("{friendId}/tapes/{tapeId}")]
+        public async Task<IActionResult> HandinTapeOnLoan([FromRoute] int friendId, [FromRoute] int tapeId)
+        {
+            await FriendsService.ReturnTape(friendId, tapeId);
+            return NoContent();
+        }       
     }
 }

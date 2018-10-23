@@ -22,6 +22,8 @@ namespace VideotapeGalore.WebApi.ExceptionHandlerExtensions
 
                     if (exceptionType == typeof(NotFoundException))
                         context.Response.StatusCode = (int) HttpStatusCode.NotFound;
+                    if (exceptionType == typeof(PreconditionFailedException))
+                        context.Response.StatusCode = (int) HttpStatusCode.PreconditionFailed;
 
                     await context.Response.WriteAsync(
                         JsonConvert.SerializeObject(new

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VideotapeGalore.Models.Entities;
 using VideotapeGalore.Repositories;
+using VideotapeGalore.Services.Exceptions;
 using VideotapeGalore.Services.Filters;
 using VideotapeGalore.Services.Interfaces;
 
@@ -30,7 +31,7 @@ namespace VideotapeGalore.Services.Implementations
         {
             if (await Context.Set<BorrowInfo>().AnyAsync(b => b.TapeId == tapeId && b.ReturnDate == null))
             {
-                throw new Exception();
+                throw new PreconditionFailedException("Tape is already on loan or doesn't exist.");
             }
 
             Context.Add(new BorrowInfo

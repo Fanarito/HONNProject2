@@ -10,6 +10,20 @@
 			"item": [
 				{
 					"name": "Get All Tapes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b13911a5-481c-43f4-a0af-1891c4689e9d",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -31,12 +45,26 @@
 				},
 				{
 					"name": "Get Single Tape",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "828a376c-c774-4b4c-9cc6-f8b58096c8b9",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://localhost:5001/api/tapes/1001",
+							"raw": "https://localhost:5001/api/tapes/100",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -45,7 +73,7 @@
 							"path": [
 								"api",
 								"tapes",
-								"1001"
+								"100"
 							]
 						}
 					},
@@ -53,6 +81,20 @@
 				},
 				{
 					"name": "Get Tape Reviews",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb3ded60-4bfd-4b95-a860-4dc1cb87a758",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -171,7 +213,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"title\": \"wow tape\",\n\t\"type\": \"Betamax\",\n\t\"releaseDate\": \"2017-01-01\",\n\t\"eidr\": \"10.5240/FFED-FFFF-FCCF-FFFD-DFEF-C\",\n\t\"directorFirstName\": \"no name\",\n\t\"directorLastName\": \"many names\"\n}"
+							"raw": "{\n\t\"id\": 1001,\n\t\"title\": \"wow tape\",\n\t\"type\": \"Betamax\",\n\t\"releaseDate\": \"2017-01-01\",\n\t\"eidr\": \"10.5240/FFED-FFFF-FCCF-FFFD-DFEF-C\",\n\t\"directorFirstName\": \"no name\",\n\t\"directorLastName\": \"many names\"\n}"
 						},
 						"url": {
 							"raw": "https://localhost:5001/api/tapes/1001",
@@ -223,7 +265,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://localhost:5001/api/users",
+							"raw": "https://localhost:5001/api/users?LoanDate=2018-10-22&LoanDuration=1000",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -232,6 +274,16 @@
 							"path": [
 								"api",
 								"users"
+							],
+							"query": [
+								{
+									"key": "LoanDate",
+									"value": "2018-10-22"
+								},
+								{
+									"key": "LoanDuration",
+									"value": "1000"
+								}
 							]
 						}
 					},
@@ -254,6 +306,100 @@
 								"api",
 								"users",
 								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Tapes On Loan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://localhost:5001/api/users/99/tapes",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"users",
+								"99",
+								"tapes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loan Tape",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://localhost:5001/api/users/99/tapes/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"users",
+								"99",
+								"tapes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return Tape",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://localhost:5001/api/users/99/tapes/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"users",
+								"99",
+								"tapes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Recommendations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://localhost:5001/api/users/10/recommendations",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"users",
+								"10",
+								"recommendations"
 							]
 						}
 					},
@@ -300,7 +446,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"testar\",\n\t\"lastName\": \"1\",\n\t\"email\": \"email@address.org\",\n\t\"phone\": \"6180977\",\n\t\"address\": \"valid\"\n}"
+							"raw": "{\n\t\"id\": 101,\n\t\"firstName\": \"testar\",\n\t\"lastName\": \"1\",\n\t\"email\": \"email@address.org\",\n\t\"phone\": \"6180977\",\n\t\"address\": \"valid\"\n}"
 						},
 						"url": {
 							"raw": "https://localhost:5001/api/users/101",
@@ -436,7 +582,7 @@
 							"raw": "{\n\t\"rating\": 4\n}"
 						},
 						"url": {
-							"raw": "https://localhost:5001/api/users/1/reviews/1",
+							"raw": "https://localhost:5001/api/users/1/reviews/999",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -447,7 +593,7 @@
 								"users",
 								"1",
 								"reviews",
-								"1"
+								"999"
 							]
 						}
 					},

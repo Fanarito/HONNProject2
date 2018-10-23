@@ -13,11 +13,17 @@ namespace VideotapeGalore.WebApi.Controllers
     {
         private IFriendsService FriendsService { get; }
         private IReviewsService ReviewsService { get; }
+        private IRecommendationService RecommendationService { get; }
 
-        public UsersController(IFriendsService friendsService, IReviewsService reviewsService)
+        public UsersController(
+            IFriendsService friendsService,
+            IReviewsService reviewsService,
+            IRecommendationService recommendationService
+        )
         {
             FriendsService = friendsService;
             ReviewsService = reviewsService;
+            RecommendationService = recommendationService;
         }
 
         [HttpGet]
@@ -134,6 +140,13 @@ namespace VideotapeGalore.WebApi.Controllers
             var review = await ReviewsService.GetSingle(friendId, tapeId);
             ReviewsService.Delete(review);
             return NoContent();
+        }
+
+        [HttpGet("{friendId}/recommendations")]
+        public async Task<IActionResult> GetUserRecommendations([FromRoute] int friendId)
+        {
+            var recommendations = await RecommendationService.GetRecommendations(friendId);
+            return Ok(recommendations.ToDtos());
         }
     }
 }

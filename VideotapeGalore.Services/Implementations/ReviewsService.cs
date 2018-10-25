@@ -26,7 +26,7 @@ namespace VideotapeGalore.Services.Implementations
 
         public async Task<Review> GetFriendReviewOfTape(int friendId, int tapeId)
         {
-            return await Context.FindAsync<Review>(new { friendId, tapeId });
+            return await Context.FindAsync<Review>(friendId, tapeId);
         }
     }
 }

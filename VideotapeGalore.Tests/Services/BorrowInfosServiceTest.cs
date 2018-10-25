@@ -63,5 +63,79 @@ namespace VideotapeGalore.Tests.Services
                 Assert.Single(friends);
             }
         }
+
+        [Fact]
+        public async Task FriendHasOverdueTapeOnLoan()
+        {
+            using (var context = new ApplicationContext(_options))
+            {
+                var borrowFilter = new BorrowFilter
+                {
+                    LoanDate = DateTime.Today.AddDays(-1),
+                    LoanDuration = 50
+                };
+
+                context.Add(new BorrowInfo
+                {
+                    BorrowDate = DateTime.Now.AddDays(-100),
+                    FriendId = 1,
+                    TapeId = 1,
+                });
+                context.SaveChanges();
+
+                var service = new BorrowInfosService(context);
+                var friends = await service.GetFriendsMatchingBorrowFilter(borrowFilter);
+                Assert.Single(friends);
+            }
+        }
+
+        [Fact]
+        public async Task TapeIsOverdue()
+        {
+            using (var context = new ApplicationContext(_options))
+            {
+                var borrowFilter = new BorrowFilter
+                {
+                    LoanDate = DateTime.Today.AddDays(-1),
+                    LoanDuration = 50
+                };
+
+                context.Add(new BorrowInfo
+                {
+                    BorrowDate = DateTime.Now.AddDays(-100),
+                    FriendId = 1,
+                    TapeId = 1,
+                });
+                context.SaveChanges();
+
+                var service = new BorrowInfosService(context);
+                var tapes = await service.GetTapesMatchingBorrowFilter(borrowFilter);
+                Assert.Single(tapes);
+            }           
+        }
+        
+        [Fact]
+        public async Task TapeIsOnLoan()
+        {
+            using (var context = new ApplicationContext(_options))
+            {
+                var borrowFilter = new BorrowFilter
+                {
+                    LoanDate = DateTime.Today.AddDays(-1)
+                };
+
+                context.Add(new BorrowInfo
+                {
+                    BorrowDate = DateTime.Now.AddDays(-1),
+                    FriendId = 1,
+                    TapeId = 1,
+                });
+                context.SaveChanges();
+
+                var service = new BorrowInfosService(context);
+                var tapes = await service.GetTapesMatchingBorrowFilter(borrowFilter);
+                Assert.Single(tapes);
+            }
+        }
     }
 }

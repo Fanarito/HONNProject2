@@ -12,3 +12,14 @@ from the project root.
 ```
 dotnet run --project VideotapeGalore.WebApi/VideotapeGalore.WebApi.csproj
 ```
+
+## Running Tests
+
+### Unit Tests
+All unit tests are stored in the Tests project and can be run by
+going into that directory and running `dotnet test`
+
+### Integration Tests
+They are performed using Postman collections. They are stored in
+the file `VideotapeGalore.postman_collection.json` and can be run
+with either the GUI or CLI.

@@ -1,605 +1,1289 @@
 {
 	"info": {
-		"_postman_id": "e82d2d86-f60b-4b0f-914a-65aacef9b6f1",
+		"_postman_id": "56511e01-be90-4dd5-90cb-2a1c69fbb4b3",
 		"name": "VideotapeGalore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Tapes",
-			"item": [
-				{
-					"name": "Get All Tapes",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b13911a5-481c-43f4-a0af-1891c4689e9d",
-								"type": "text/javascript",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								]
-							}
-						}
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single Tape",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "828a376c-c774-4b4c-9cc6-f8b58096c8b9",
-								"type": "text/javascript",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes/100",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes",
-								"100"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Tape Reviews",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "fb3ded60-4bfd-4b95-a860-4dc1cb87a758",
-								"type": "text/javascript",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								]
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes/101/reviews",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes",
-								"101",
-								"reviews"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single Tape Review",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes/101/reviews/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes",
-								"101",
-								"reviews",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Tape Review",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"rating\": 3\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes/101/reviews/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes",
-								"101",
-								"reviews",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Tape",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"test tape\",\n\t\"type\": \"Betamax\",\n\t\"releaseDate\": \"2017-01-01\",\n\t\"eidr\": \"10.5240/FFED-FFFF-FCCF-FFFD-DFEF-C\",\n\t\"directorFirstName\": \"no name\",\n\t\"directorLastName\": \"many names\"\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Tape",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\": 1001,\n\t\"title\": \"wow tape\",\n\t\"type\": \"Betamax\",\n\t\"releaseDate\": \"2017-01-01\",\n\t\"eidr\": \"10.5240/FFED-FFFF-FCCF-FFFD-DFEF-C\",\n\t\"directorFirstName\": \"no name\",\n\t\"directorLastName\": \"many names\"\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes/1001",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes",
-								"1001"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Tape",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/tapes/1001",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"tapes",
-								"1001"
-							]
-						}
-					},
-					"response": []
+					"port": "5001",
+					"path": [
+						"api",
+						"users"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "Users",
-			"item": [
+			"name": "Get All Tapes",
+			"event": [
 				{
-					"name": "Get All Users",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users?LoanDate=2018-10-22&LoanDuration=1000",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users"
-							],
-							"query": [
-								{
-									"key": "LoanDate",
-									"value": "2018-10-22"
-								},
-								{
-									"key": "LoanDuration",
-									"value": "1000"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/101",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"101"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User Tapes On Loan",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/99/tapes",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"99",
-								"tapes"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Loan Tape",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/99/tapes/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"99",
-								"tapes",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Return Tape",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/99/tapes/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"99",
-								"tapes",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User Recommendations",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/10/recommendations",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"10",
-								"recommendations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create User",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"tester\",\n\t\"lastName\": \"1\",\n\t\"email\": \"email@address.org\",\n\t\"phone\": \"6180977\",\n\t\"address\": \"valid\"\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/users",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"id\": 101,\n\t\"firstName\": \"testar\",\n\t\"lastName\": \"1\",\n\t\"email\": \"email@address.org\",\n\t\"phone\": \"6180977\",\n\t\"address\": \"valid\"\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/users/101",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"101"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User Reviews",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/1/reviews",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"1",
-								"reviews"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Single User Review",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/1/reviews/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"1",
-								"reviews",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete User Review",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://localhost:5001/api/users/1/reviews/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"1",
-								"reviews",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User Review",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"rating\": 1\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/users/1/reviews/1",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"1",
-								"reviews",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Tape Review",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"rating\": 4\n}"
-						},
-						"url": {
-							"raw": "https://localhost:5001/api/users/1/reviews/999",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "5001",
-							"path": [
-								"api",
-								"users",
-								"1",
-								"reviews",
-								"999"
-							]
-						}
-					},
-					"response": []
+					"listen": "test",
+					"script": {
+						"id": "d86afa3f-84ea-4c26-b143-e03a41784ad8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
 				}
-			]
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f990a50-9d6a-43e3-80b4-35fd7bd099e1",
+						"type": "text/javascript",
+						"exec": [
+							"var tapeLink = postman.getResponseHeader(\"location\");",
+							"postman.setEnvironmentVariable(\"tapeLink\", tapeLink);",
+							"",
+							"var jsonData = pm.response.json();",
+							"postman.setEnvironmentVariable(\"tapeId\", jsonData.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"test tape\",\n\t\"type\": \"Betamax\",\n\t\"releaseDate\": \"2017-01-01\",\n\t\"eidr\": \"10.5240/FFED-FFFF-FCCF-FFFD-DFEF-C\",\n\t\"directorFirstName\": \"no name\",\n\t\"directorLastName\": \"many names\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Newly Created Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92a4edf5-95bd-40e0-9f10-b0d071cb76e3",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Got tape as response\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.eql(\"test tape\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{tapeLink}}",
+					"host": [
+						"{{tapeLink}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4743a172-1ff3-4bd6-b8ce-378c94f3c95a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1001,\n\t\"title\": \"wow tape\",\n\t\"type\": \"Betamax\",\n\t\"releaseDate\": \"2017-01-01\",\n\t\"eidr\": \"10.5240/FFED-FFFF-FCCF-FFFD-DFEF-C\",\n\t\"directorFirstName\": \"no name\",\n\t\"directorLastName\": \"many names\"\n}"
+				},
+				"url": {
+					"raw": "{{tapeLink}}",
+					"host": [
+						"{{tapeLink}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Updated Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b36f3cb1-9bdb-439c-84a5-d840164a85fe",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Tape was updated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.title).to.eql(\"wow tape\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{tapeLink}}",
+					"host": [
+						"{{tapeLink}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b2b5ea5-3d5b-4a63-b834-2c975ec7a653",
+						"type": "text/javascript",
+						"exec": [
+							"var userLink = postman.getResponseHeader(\"location\");",
+							"postman.setEnvironmentVariable(\"userLink\", userLink);",
+							"",
+							"var jsonData = pm.response.json();",
+							"postman.setEnvironmentVariable(\"userId\", jsonData.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"tester\",\n\t\"lastName\": \"1\",\n\t\"email\": \"email@address.org\",\n\t\"phone\": \"6180977\",\n\t\"address\": \"valid\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Newly Created User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c6108a-a63e-4c43-8070-29ca81fdac1e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Got user as response\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstName).to.eql(\"tester\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b40ac1f4-6cfe-4d55-8b2b-a79b6ee37dea",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 101,\n\t\"firstName\": \"wowster\",\n\t\"lastName\": \"1\",\n\t\"email\": \"email@address.org\",\n\t\"phone\": \"6180977\",\n\t\"address\": \"valid\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Newly Updated User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "febb7307-10e0-4876-b609-2ae613186951",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Got user as response\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.firstName).to.eql(\"wowster\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Loan Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "082f0af9-792f-4852-a777-a742f4adf18e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"// Store date loaned for future use",
+							"var moment = require('moment');",
+							"postman.setEnvironmentVariable(\"currentDate\", moment().format(\"YYYY-MM-DD\"));"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/tapes/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"tapes",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User With Tapes On Loan Report",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d547f213-a884-4628-ab00-fb2f72038cda",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Contains newly loaned tape\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var userId = pm.environment.get(\"userId\");",
+							"    pm.expect(jsonData.some(u => u.id == userId)).to.eql(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users?LoanDate={{currentDate}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "LoanDate",
+							"value": "{{currentDate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tapes On Loan Report",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "453cc377-1e75-48ba-97a0-f0847889bbaf",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Contains newly loaned tape\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var tapeId = pm.environment.get(\"tapeId\");",
+							"    pm.expect(jsonData.some(t => t.id == tapeId)).to.eql(true);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes?LoanDate={{currentDate}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes"
+					],
+					"query": [
+						{
+							"key": "LoanDate",
+							"value": "{{currentDate}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Tapes On Loan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2f1e7737-92c3-4ec4-85c4-0e24d6625f65",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Tape is in loan list\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/tapes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"tapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43a3cb5e-abc3-4918-89b0-5c652787d05f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/tapes/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"tapes",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Tapes On Loan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e03537ec-5039-492e-807a-e748da7fa950",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Tape is no longer in loan list\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(0);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/tapes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"tapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tape Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d79cdaef-eaba-49ca-8345-269c63ed1ca5",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"rating\": 4\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/reviews/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"reviews",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tape Reviews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c985c7d-cff6-45e8-a66e-474210081e6a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Review is in review list\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{tapeLink}}/reviews",
+					"host": [
+						"{{tapeLink}}"
+					],
+					"path": [
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Reviews",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "00ed3511-4f5b-4642-be73-77aae73021d9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Review is in review list\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/reviews",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"reviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Tape Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d93cf434-279c-475f-a1f8-5117091eca94",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Review has correct rating\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.rating).to.eql(4);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes/{{tapeId}}/reviews/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes",
+						"{{tapeId}}",
+						"reviews",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single User Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f449152-6ebf-4eef-a155-8700484cd9bf",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Review has correct rating\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.rating).to.eql(4);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/reviews/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"reviews",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f18633d-6229-4509-8714-93d88373388e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"rating\": 1\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/reviews/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"reviews",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Tape Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f37c80f-08c9-45c2-be8e-64f16ebcd29b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Review was updated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.rating).to.eql(1);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes/{{tapeId}}/reviews/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes",
+						"{{tapeId}}",
+						"reviews",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Tape Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4baea192-ee76-4ce5-b1fb-3a03932040d7",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"rating\": 3\n}"
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes/{{tapeId}}/reviews/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes",
+						"{{tapeId}}",
+						"reviews",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Tape Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2bcb7206-cc72-405a-8b08-3361eb3e18fe",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Review was updated\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.rating).to.eql(3);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes/{{tapeId}}/reviews/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes",
+						"{{tapeId}}",
+						"reviews",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "324c8539-4e7b-4e51-a88c-5fd0404a1d9b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/reviews/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"reviews",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Specific Tape Review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8497bf91-64d7-4cfd-ba34-cab5dfa0ba00",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes/{{tapeId}}/reviews/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes",
+						"{{tapeId}}",
+						"reviews",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be9d17e3-f7d8-4bac-8cc8-a1fb110e39fb",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/tapes/{{tapeId}}",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"tapes",
+						"{{tapeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deleted Tape",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f43637df-5c93-4a23-9171-e2c8c1dfc027",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{tapeLink}}",
+					"host": [
+						"{{tapeLink}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Recommendations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0879fe1-9c90-421f-a6b5-9cb6a52fac58",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/users/{{userId}}/recommendations",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"users",
+						"{{userId}}",
+						"recommendations"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
